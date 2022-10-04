@@ -16,7 +16,7 @@ namespace AppClimaAPIRest.Services
             string appID = "493e1a591f5ce79846327bd3b694e068";
 
             string queryString = "http://api.weathermap.org/data/2.5/weather?q=" + cidade + "&units=metric" + "&appid=" + appID;
-            dynamic resultado = await getDataFromService(queryString).ConfigureAwait(false);
+            dynamic resultado = await GetDataFromService(queryString).ConfigureAwait(false);
 
             if (resultado["weather"] != null)
             {
@@ -37,6 +37,39 @@ namespace AppClimaAPIRest.Services
             {
                 return null;
             }
+        }
+
+        public static async Task<dynamic> GetDataFromService(string queryString)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetAsync(queryString);
+            dynamic data = null;
+            if (response != null)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                data = JsonConvert.DeserializeObject<dynamic>(json);
+            }
+
+            return data;
+        }
+
+
+
+        public static async Task<dynamic> GetDataFromServiceByCity (string city)
+        {
+            string appID = "493e1a591f5ce79846327bd3b694e068";
+
+            string url = string.Format("http://api.openweathermap.org/data/2.5/forecast/daily?q=[0]&units=metric&cnt=1&APPID=[1]");
+            HttpClient client = new HttpClient();
+            var response = await client.GetAsync(url);
+            dynamic data = null;
+            if (response != null)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                data = JsonConvert.DeserializeObject<dynamic>(json);
+            }
+
+            return data;
         }
     }
 }

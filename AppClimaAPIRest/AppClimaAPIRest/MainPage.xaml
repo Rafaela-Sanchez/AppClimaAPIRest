@@ -4,21 +4,34 @@
              x:Class="AppClimaAPIRest.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="#545454">
+            <StackLayout Padding="10,10,10,10" HorizontalOptions="Start">
+                <Label Text="Procurar Cidade: " TextColor="White" FontAttributes="Bold" FontSize="Medium"/>
+                <Label x:Name="cidadeLabel" Text="Digite o nome da Cidade: " TextColor="White" FontSize="Small"/>
+                <Entry x:Name="cidadeEntry"/>
+            </StackLayout>
 
+            <StackLayout Padding="0,0,0,10" VerticalOptions="End">
+                <Button x:Name="btnPrevisao" Text="Previsao do Tempo" WidthRequest="185"
+                    BorderWidth="1" Clicked="btnPrevisao_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Padding="10,10,10,10" VerticalOptions="Start">
+            <Label Text="Local:" />
+            <Label Text="{Binding Title}" TextColor="Black" />
+            <Label Text="Temperatura:" />
+            <Label x:Name="tempLabel" TextColor="Black" Text="{Binding Temperature}"/>
+            <Label Text="Velocidade do Vento: "/>
+            <Label x:Name="windLabel" Text="{Binding Wind}" TextColor="Black"/>
+            <Label Text="Humidade: "/>
+            <Label x:Name="humidityLabel" Text="{Binding Humidity}" TextColor="Black"/>
+            <Label Text="Visibilidade: "/>
+            <Label x:Name="visibilityLabel" Text="{Binding Visibility}" TextColor="Black"/>
+            <Label Text="Hora do nascimento do Sol:"/>
+            <Label x:Name="sunriseLabel" Text="{Binding Sunrise}" TextColor="Black"/>
+            <Label Text="Hora do pôr do Sol:"/>
+            <Label x:Name="sunsetLabel" Text="{Binding Sunset}" TextColor="Black"/>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
