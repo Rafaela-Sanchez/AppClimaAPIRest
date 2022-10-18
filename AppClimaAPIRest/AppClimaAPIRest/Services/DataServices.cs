@@ -15,7 +15,9 @@ namespace AppClimaAPIRest.Services
         {
             string appID = "493e1a591f5ce79846327bd3b694e068";
 
-            string queryString = "https://api.weathermap.org/data/2.5/weather?q=" + cidade + "&units=metric" + "&appid=" + appID;
+            string queryString = "https://api.openweathermap.org/data/2.5/weather?q=" + cidade + "&units=metric&appid=" + appID;
+
+
             dynamic resultado = await GetDataFromService(queryString).ConfigureAwait(false);
 
             if (resultado["weather"] != null)
