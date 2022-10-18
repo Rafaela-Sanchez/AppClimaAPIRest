@@ -59,7 +59,7 @@ namespace AppClimaAPIRest.Services
         {
             string appID = "493e1a591f5ce79846327bd3b694e068";
 
-            string url = string.Format("https://api.openweathermap.org/data/2.5/forecast/daily?q=[0]&units=metric&cnt=1&APPID=[1]");
+            string url = string.Format("https://api.openweathermap.org/data/2.5/forecast/daily?q={0}&units=metric&cnt=1&APPID={1}", city.Trim(), appID);
             HttpClient client = new HttpClient();
             var response = await client.GetAsync(url);
             dynamic data = null;
